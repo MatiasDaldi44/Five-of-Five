@@ -7,10 +7,12 @@ var settings = {
         "x-rapidapi-host": "hotels4.p.rapidapi.com",
         "x-rapidapi-key": "21280359f4mshe424cc8187c3cf9p18ebe4jsnd3a2e2520bc5"
     }};
+
 var searchResults
 var hotels = [];
 var hotelNames = []
 var hotelRatings = []
+var someName = $(".first-card-header")
 
 $("#go").click(function() {
     $("#recommendationOne").removeClass("is-hidden")
@@ -45,4 +47,6 @@ function saveSearches() {
 function getHotelNames(){
     for (var i = 0; i < 5; i++){
         hotelNames.push(searchResults.results[i].name)
-}};
+    }
+    someName.append("<p>").text(hotelNames[0]).attr("class", "card-header-title")
+};
