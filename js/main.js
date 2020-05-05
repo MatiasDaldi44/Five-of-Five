@@ -38,6 +38,10 @@ $(".button").on("click", function() {
     });
 });
 
+$("#recommendationOne").on("click", function(){
+    $(".modal").attr("class", "is-active")
+})
+
 function saveSearches() {
     localStorage.setItem("Searches", JSON.stringify(searches))
 };
@@ -46,3 +50,17 @@ function getHotelNames(){
     for (var i = 0; i < 5; i++){
         hotelNames.push(searchResults.results[i].name)
 }};
+
+// Function for returning the link for booking by Google searching the name
+// of the hotel/Airbnb name.
+var googleAPI = "AIzaSyAQf-kqorH50R3Ae5kTKCcHvAJvOio4rk8";
+var googleHotel = "https://www.googleapis.com/customsearch/v1?key="+googleAPI+"&cx=018340522822646408935:81mmayyki6o&q=orlando&callback=hndlr"
+
+function hndlr(response) {
+    console.log(response)
+    // for (var i = 0; i < response.items.length; i++) {
+    //   var item = response.items[i];
+    //   // Output:
+    //   console.log(item);
+    // }
+  }
