@@ -10,9 +10,9 @@ var settings = {
 
 var searchResults
 var hotels = [];
-var hotelNames = []
-var hotelRatings = []
-var someName = $(".first-card-header")
+var hotelNames = [];
+var hotelRatings = [];
+var hotelNameforSearch = "";
 
 $("#go").click(function() {
     $("#recommendationOne").removeClass("is-hidden")
@@ -40,10 +40,15 @@ $(".button").on("click", function() {
     });
 });
 
-$("#recommendationOne").on("click", function(){
-    $(".modal").attr("class", "is-active")
+$("footer").on("click", ".hotelResults", function(){
+    hotelNameforSearch = this.parentNode.parentNode.children[0].innerText
+    console.log(hotelNameforSearch);
+    $(".modal").attr("class", "modal is-active");
 })
 
+$(".modal-close").on("click", function(){
+    $(".modal").attr("class", "modal")
+})
 function saveSearches() {
     localStorage.setItem("Searches", JSON.stringify(searches))
 };
