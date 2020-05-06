@@ -14,6 +14,7 @@ var hotelNames = [];
 var hotelRatings = [];
 var hotelPrices = [];
 var hotelAddress = [];
+var hotelNameforSearch = "";
 
 $(".button").on("click", function() {
     var searchTerm = $(".input").val()
@@ -81,10 +82,18 @@ $(".button").on("click", function() {
     });
 });
 
-$("#recommendationOne").on("click", function(){
-    $(".modal").attr("class", "is-active")
+$("footer").on("click", ".hotelResults", function(){
+    hotelNameforSearch = this.parentNode.parentNode.children[0].innerText
+    console.log(hotelNameforSearch);
+    $(".modal").attr("class", "modal is-active");
 })
 
+$(".modal-close").on("click", function(){
+    $(".modal").attr("class", "modal")
+})
+function saveSearches() {
+    localStorage.setItem("Searches", JSON.stringify(searches))
+};
 
 // I don't think we're using this function for anything
 // function saveSearches() {
@@ -111,6 +120,7 @@ function hndlr(response) {
     //   console.log(item);
     // }
   }
+
 
   // MAPS KEY, don't delete AIzaSyDQIRCNQ8vkB871YnnyN3OsBAxCuR7N25s
 
