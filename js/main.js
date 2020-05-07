@@ -80,17 +80,26 @@ $(".button").on("click", function() {
             fifthMap(fifthHotelLat, fifthHotelLon);
         });
     });
+
 });
 
 $("footer").on("click", ".hotelResults", function(){
     hotelNameforSearch = this.parentNode.parentNode.children[0].innerText
-    console.log(hotelNameforSearch);
+    // Setting our Google Search parameter to read the name of hotelResult title for
+    // the hotel chosen. Executing search with the new parameter.
+    var newSearch = google.search.cse.element.getElement("results")
+    newSearch.execute(hotelNameforSearch)
+    // Changing the modal view style
     $(".modal").attr("class", "modal is-active");
+    $(".modal-content").css("margin", "10em auto");
+    $(".modal-content").css("max-height", "400px")
+    $(".gsc-control-cse").css("padding", "3em")
 })
 
 $(".modal-close").on("click", function(){
     $(".modal").attr("class", "modal")
 })
+
 function saveSearches() {
     localStorage.setItem("Searches", JSON.stringify(searches))
 };
@@ -107,10 +116,36 @@ function getHotelInfo(){
         hotelPrices.push(searchResults.results[i].ratePlan.price.current);
 }};
 
-// Function for returning the link for booking by Google searching the name
-// of the hotel/Airbnb name.
-var googleAPI = "AIzaSyAQf-kqorH50R3Ae5kTKCcHvAJvOio4rk8";
-var googleHotel = "https://www.googleapis.com/customsearch/v1?key="+googleAPI+"&cx=018340522822646408935:81mmayyki6o&q=orlando&callback=hndlr"
+
+// Function for creating Google Custom Search and setting results to display in modal.
+const myInitCallback = function() {
+    if (document.readyState == 'complete') {
+        console.log(this)
+      // Document is ready when CSE element is initialized.
+      // Render an element with both search box and search results in div with id 'test'.
+      google.search.cse.element.render(
+          {
+            div: "open",
+            tag: 'searchresults-only'
+           });
+    } else {
+      // Document is not ready yet, when CSE element is initialized.
+      google.setOnLoadCallback(function() {
+        // Render an element with both search box and search results in div with id 'test'.
+        google.search.cse.element.render(
+            {
+                div: "open",
+                tag: 'searchresults-only',
+                gname: "results"
+            });
+      }, true);
+    }
+  };
+  // Initializing Google Custom Search Engine
+  window.__gcse = {
+    parsetags: 'explicit',
+    initializationCallback: myInitCallback
+  };
 
 function hndlr(response) {
     console.log(response)
