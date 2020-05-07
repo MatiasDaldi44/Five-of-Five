@@ -13,7 +13,7 @@ var hotels = [];
 var hotelNames = [];
 var hotelRatings = [];
 var hotelPrices = [];
-var hotelAddress = [];
+var streetAddress = [];
 var hotelNameforSearch = "";
 
 $(".button").on("click", function() {
@@ -41,7 +41,7 @@ $(".button").on("click", function() {
             console.log(hotelNames)
             console.log(hotelPrices)
             console.log(hotelRatings)
-
+            console.log(streetAddress)
             var cardHeaders = $(".card-header-title")
             for (var i = 0; i < hotelNames.length; i++) {
                 cardHeaders.eq(i).text(hotelNames[i])
@@ -54,7 +54,10 @@ $(".button").on("click", function() {
             for (var i = 0; i < hotelRatings.length; i++) {
                 ratingDiv.eq(i).text(hotelRatings[i])
             }
-
+            var addressDiv = $(".street")
+            for (var i = 0; i < streetAddress.length; i++) {
+                addressDiv.eq(i).text(streetAddress[i])
+            }
             var firstHotelLat = searchResults.results[0].coordinate.lat
             var firstHotelLon = searchResults.results[0].coordinate.lon
 
@@ -92,8 +95,10 @@ $("footer").on("click", ".hotelResults", function(){
     // Changing the modal view style
     $(".modal").attr("class", "modal is-active");
     $(".modal-content").css("margin", "10em auto");
-    $(".modal-content").css("max-height", "400px")
-    $(".gsc-control-cse").css("padding", "3em")
+    $(".modal-content").css("max-height", "400px");
+    $(".gsc-control-wrapper-cse").css("padding", "3em");
+    $(".gsc-control-wrapper-cse").css("padding-top", "0em");
+    $("#__gcse_0").css("height", "0px");
 })
 
 $(".modal-close").on("click", function(){
@@ -114,6 +119,7 @@ function getHotelInfo(){
         hotelNames.push(searchResults.results[i].name);
         hotelRatings.push(searchResults.results[i].guestReviews.rating);
         hotelPrices.push(searchResults.results[i].ratePlan.price.current);
+        streetAddress.push(searchResults.results[i].address.streetAddress);
 }};
 
 
