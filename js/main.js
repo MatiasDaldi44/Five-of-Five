@@ -5,7 +5,7 @@ var settings = {
     "method": "GET",
     "headers": {
         "x-rapidapi-host": "hotels4.p.rapidapi.com",
-        "x-rapidapi-key": "14d8622397msh9a9995defefaba9p1df56cjsn754c68d55754"
+        "x-rapidapi-key": "215c8aeae6mshffbed9c9dc6d42cp1e3815jsn4b3d0fc77413"
     }};
 
 var searchResults
