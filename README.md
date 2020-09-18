@@ -1,4 +1,4 @@
-# Project-1 (5ofFive)
+# Five of Five
 # Slogan: Find five places to stay in 5 easy steps!
 # Description: The 5ofFive project started as an idea to list our five cheap places to stay and five cheap places to eat for a city you would like to visit. Due to difficulties with a restuarunt API we had to limit our functionality to just providing the user the five cheapest places to stay for the city they request and giving them a map of where it is located.
 # Our APIs: Hotels API, Google Custom Search Engine API, and Google Maps API.
